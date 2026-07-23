@@ -36,7 +36,7 @@ COPY server.xml /opt/tomcat/conf/server.xml
 COPY logback.xml /opt/tomcat/conf/logback.xml
 
 # Deploy application
-COPY kannel-simulator-api.war /opt/tomcat/webapps/ROOT.war
+COPY target/kannel-simulator-api.war /opt/tomcat/webapps/ROOT.war
 
 WORKDIR /opt/tomcat
 
