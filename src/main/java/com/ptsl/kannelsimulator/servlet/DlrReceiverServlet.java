@@ -45,9 +45,6 @@ public class DlrReceiverServlet extends HttpServlet {
              */
             String dlrUrl = request.getParameter("dlr-url");
 
-            if (dlrUrl != null) {
-                dlrUrl = URLDecoder.decode(dlrUrl, StandardCharsets.UTF_8);
-            }
 
             /*
              * Build Request

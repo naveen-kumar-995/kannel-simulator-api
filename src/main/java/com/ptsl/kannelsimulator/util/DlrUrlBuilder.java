@@ -4,6 +4,7 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.UUID;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -59,7 +60,7 @@ public final class DlrUrlBuilder {
 
         String url = request.getDlrUrl();
 
-        String messageId = extractMessageId(request.getMetaData());
+        String messageId = UUID.randomUUID().toString().replace("-" , "");
 
         String dr = buildDr(
                 messageId,
