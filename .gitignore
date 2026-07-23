@@ -1,13 +1,18 @@
-target/
+# Ignore everything under target
+target/*
+
+# Except the WAR file
+!target/kannel-simulator-api-1.0.0.war
+
+# Maven wrapper
 !.mvn/wrapper/maven-wrapper.jar
+
+# Nested target directories
 !**/src/main/**/target/
 !**/src/test/**/target/
 
 ### IntelliJ IDEA ###
-.idea/modules.xml
-.idea/jarRepositories.xml
-.idea/compiler.xml
-.idea/libraries/
+.idea/
 *.iws
 *.iml
 *.ipr
