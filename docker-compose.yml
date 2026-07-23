@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+
+  kannel-simulator:
+
+    container_name: kannel-simulator
+    build: .
+    image: kannel-simulator:1.0.0
+
+    restart: unless-stopped
+
+    ports:
+      - "35001:8080"
+
+    volumes:
+      - ./logs:/opt/apps/logs
+      - ./fallback_files:/opt/apps/fallback_files
+
+

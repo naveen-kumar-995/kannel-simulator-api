@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gateway>
+    <status>running</status>
+    <version>1.4.5</version>
+    <hostname>kannel-simulator</hostname>
+    <uptime>86400</uptime>
+
+    <sms>
+        <received>1250</received>
+        <sent>1248</sent>
+        <queued>2</queued>
+        <store-size>2</store-size>
+    </sms>
+
+    <dlr>
+        <received>1248</received>
+        <sent>1248</sent>
+        <queued>0</queued>
+    </dlr>
+
+    <smsboxes>
+        <count>1</count>
+        <smsbox>
+            <id>SMSBOXID</id>
+            <status>online</status>
+            <queued>0</queued>
+        </smsbox>
+    </smsboxes>
+
+    <smscs>
+        <count>1</count>
+        <smsc>
+            <id>SIMU7</id>
+            <type>SMPP</type>
+            <host>127.0.0.1</host>
+            <port>2775</port>
+            <status>online</status>
+            <queued>0</queued>
+            <received>0</received>
+            <sent>1248</sent>
+            <failed>0</failed>
+        </smsc>
+    </smscs>
+</gateway>

@@ -1,0 +1,74 @@
+<configuration scan="true" scanPeriod="30 seconds">
+    <!-- Console Appender -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - [%method] %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Rolling File Appender for general logging -->
+    <appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/opt/tomcat/logs/kannel-simu.log</file>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - [%method] %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- Rotate daily and when the file size exceeds 1GB -->
+            <fileNamePattern>/opt/tomcat/logs/kannel-simu.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>1GB</maxFileSize>
+            <!-- Keep 30 days' worth of history -->
+            <maxHistory>30</maxHistory>
+            <!-- Total size of all archived log files -->
+            <totalSizeCap>100GB</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+
+    <!-- Rolling File Appender for ERROR logs -->
+    <appender name="ERROR_ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/opt/tomcat/logs/error_kannel-simu.log</file>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - [%method] %msg%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- Rotate daily and when the file size exceeds 1GB -->
+            <fileNamePattern>/opt/tomcat/logs/error_kannel-simu.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>1GB</maxFileSize>
+            <!-- Keep 30 days' worth of history -->
+            <maxHistory>30</maxHistory>
+            <!-- Total size of all archived log files -->
+            <totalSizeCap>100GB</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+
+    <!-- Rolling File Appender for Kafka logs -->
+    <appender name="KAFKA_ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/opt/tomcat/logs/kafka_kannel-simu.log</file>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - [%method] %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- Rotate daily and when the file size exceeds 1GB -->
+            <fileNamePattern>/opt/tomcat/logs/kafka_kannel-simu.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>1GB</maxFileSize>
+            <!-- Keep 30 days' worth of history -->
+            <maxHistory>30</maxHistory>
+            <!-- Total size of all archived log files -->
+            <totalSizeCap>100GB</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+
+    <!-- Logger for Kafka -->
+    <logger name="org.apache.kafka" level="error" additivity="false">
+        <appender-ref ref="KAFKA_ROLLING" />
+    </logger>
+
+    <!-- Root Logger -->
+    <root level="error">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="ROLLING" />
+        <appender-ref ref="ERROR_ROLLING" />
+    </root>
+</configuration>
