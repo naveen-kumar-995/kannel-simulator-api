@@ -1,0 +1,8 @@
+com\ptsl\kannelsimulator\poller\DlrPoller.class
+com\ptsl\kannelsimulator\bootstrap\StartupListener.class
+com\ptsl\kannelsimulator\queue\DlrQueueHolder.class
+com\ptsl\kannelsimulator\status\StatusServlet.class
+com\ptsl\kannelsimulator\model\DlrRequest.class
+com\ptsl\kannelsimulator\util\DlrUrlBuilder.class
+com\ptsl\kannelsimulator\http\HttpSender.class
+com\ptsl\kannelsimulator\servlet\DlrReceiverServlet.class
