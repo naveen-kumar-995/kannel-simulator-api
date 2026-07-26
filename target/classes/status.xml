@@ -1,44 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gateway>
-    <status>running</status>
-    <version>1.4.5</version>
-    <hostname>kannel-simulator</hostname>
-    <uptime>86400</uptime>
+
+    <status>running, uptime 1d 0h 0m 0s</status>
 
     <sms>
-        <received>1250</received>
-        <sent>1248</sent>
-        <queued>2</queued>
-        <store-size>2</store-size>
+
+        <storesize>2</storesize>
+
+        <inbound>(0.00,0.00,0.00)</inbound>
+
+        <outbound>(1250.00,0.00,0.00)</outbound>
+
+        <sent>
+            <total>1248</total>
+            <queued>2</queued>
+        </sent>
+
+        <received>
+            <total>1250</total>
+            <queued>0</queued>
+        </received>
+
     </sms>
 
     <dlr>
-        <received>1248</received>
-        <sent>1248</sent>
-        <queued>0</queued>
+
+        <storesize>0</storesize>
+
+        <inbound>(1248.00,0.00,0.00)</inbound>
+
+        <outbound>(0.00,0.00,0.00)</outbound>
+
+        <storage>internal</storage>
+
+        <sent>
+            <total>1248</total>
+            <queued>0</queued>
+        </sent>
+
+        <received>
+            <total>1248</total>
+            <queued>0</queued>
+        </received>
+
     </dlr>
 
-    <smsboxes>
-        <count>1</count>
-        <smsbox>
+    <boxes>
+        <box>
+            <type>smsbox</type>
             <id>SMSBOXID</id>
-            <status>online</status>
-            <queued>0</queued>
-        </smsbox>
-    </smsboxes>
+            <IP>127.0.0.1</IP>
+            <status>on-line</status>
+            <ssl>no</ssl>
+            <queue>0</queue>
+        </box>
+    </boxes>
 
     <smscs>
-        <count>1</count>
         <smsc>
-            <id>SIMU7</id>
-            <type>SMPP</type>
-            <host>127.0.0.1</host>
-            <port>2775</port>
+            <id>SIMU1</id>
+
+            <admin-id>SIMU1</admin-id>
+
+            <name>SMPP:127.0.0.1:2775/2776:simulator:</name>
+
             <status>online</status>
-            <queued>0</queued>
-            <received>0</received>
-            <sent>1248</sent>
+
             <failed>0</failed>
+
+            <queued>0</queued>
+
+            <sms>
+                <sent>1248</sent>
+                <received>0</received>
+                <inbound>(0.00,0.00,0.00)</inbound>
+                <outbound>(1250.00,0.00,0.00)</outbound>
+            </sms>
+
+            <dlr>
+                <sent>1248</sent>
+                <received>1248</received>
+                <inbound>(1248.00,0.00,0.00)</inbound>
+                <outbound>(0.00,0.00,0.00)</outbound>
+            </dlr>
+
         </smsc>
     </smscs>
+
 </gateway>
