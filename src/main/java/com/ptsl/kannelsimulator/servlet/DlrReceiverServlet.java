@@ -51,6 +51,7 @@ public class DlrReceiverServlet extends HttpServlet {
              */
             DlrRequest dlrRequest = new DlrRequest(user, password, smsc, smscId, cliId, mobileNumber, senderId, message, dlrUrl, metaData, System.currentTimeMillis());
 
+
             /*
              * Push into Queue
              */
@@ -63,7 +64,7 @@ public class DlrReceiverServlet extends HttpServlet {
             }
 
             if (LOGGER.isDebugEnabled()) {
-                LOGGER.debug("Queued DLR Request " + "Mobile=" + mobileNumber + ", SMSC=" + smsc + ", CLIID=" + cliId);
+                LOGGER.debug("Queued DLR Request Mobile={}, SMSC={}, CLIID={}, dlrRequest={}", mobileNumber, smsc, cliId, dlrRequest);
             }
             response.setStatus(HttpServletResponse.SC_ACCEPTED);
             response.getWriter().write("ACCEPTED");

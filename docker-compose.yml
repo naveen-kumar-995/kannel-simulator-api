@@ -14,7 +14,7 @@ services:
       - "35001:8080"
 
     volumes:
-      - ./logs:/opt/apps/logs
-      - ./fallback_files:/opt/apps/fallback_files
+      - ./logs:/opt/tomcat/logs
+      - ./fallback_files:/opt/tomcat/fallback_files
 
 

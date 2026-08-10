@@ -68,9 +68,9 @@ public class DlrPoller implements Runnable {
 
                 try {
                     if (throwable != null) {
-                        LOGGER.error("Unable to send DLR.", throwable);
+                        LOGGER.error("Unable to send DLR: {}", callbackUrl,  throwable);
                     } else if (LOGGER.isDebugEnabled()) {
-                        LOGGER.debug("DLR Sent. HTTP=" + response.statusCode());
+                        LOGGER.debug("DLR Sent. HTTP={}", response.statusCode());
                     }
                 } finally {
                     semaphore.release();
