@@ -26,6 +26,12 @@ public final class DlrUrlBuilder {
      */
     public static String buildDeliveredUrl(DlrRequest request) {
 
+
+        if("REJECT".equalsIgnoreCase(request.getSenderId()))
+        {
+            return build(request, "UNDELIV" ,"001" , "1");
+        }
+
         return build(
                 request,
                 "DELIVRD",
