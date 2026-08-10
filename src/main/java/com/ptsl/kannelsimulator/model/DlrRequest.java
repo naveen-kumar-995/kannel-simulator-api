@@ -79,6 +79,22 @@ public class DlrRequest implements Serializable {
     private final long   receivedTime;
 
 
+    @Override
+    public String toString() {
+        return "DlrRequest{" +
+                "user='" + user + '\'' +
+                ", password='" + password + '\'' +
+                ", smsc='" + smsc + '\'' +
+                ", smscId='" + smscId + '\'' +
+                ", cliId='" + cliId + '\'' +
+                ", mobileNumber='" + mobileNumber + '\'' +
+                ", senderId='" + senderId + '\'' +
+                ", message='" + message + '\'' +
+                ", dlrUrl='" + dlrUrl + '\'' +
+                ", metaData='" + metaData + '\'' +
+                ", receivedTime=" + receivedTime +
+                '}';
+    }
 
 
 }

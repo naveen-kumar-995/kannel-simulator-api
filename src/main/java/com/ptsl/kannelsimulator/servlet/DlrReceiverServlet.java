@@ -64,7 +64,7 @@ public class DlrReceiverServlet extends HttpServlet {
             }
 
             if (LOGGER.isDebugEnabled()) {
-                LOGGER.debug("Queued DLR Request Mobile={}, SMSC={}, CLIID={}, dlrRequest={}", mobileNumber, smsc, cliId, dlrRequest);
+                LOGGER.debug("Queued DLR Request Mobile={}, SMSC={}, CLIID={}, dlrRequest={}", mobileNumber, smsc, cliId, dlrRequest.toString());
             }
             response.setStatus(HttpServletResponse.SC_ACCEPTED);
             response.getWriter().write("ACCEPTED");
