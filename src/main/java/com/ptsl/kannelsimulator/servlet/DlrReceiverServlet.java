@@ -21,13 +21,13 @@ public class DlrReceiverServlet extends HttpServlet {
 
     private static final long   serialVersionUID = 1L;
     private static final  Logger LOGGER           = LoggerFactory.getLogger(DlrReceiverServlet.class);
+    boolean disableDlrHandover =  Boolean.parseBoolean(System.getenv().getOrDefault("DISABLE-DLR-HANDOVER", "false"));
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         try {
 
-            boolean disableDlrHandover =  Boolean.parseBoolean(System.getenv().getOrDefault("DISABLE-DLR-HANDOVER", "false"));
 
             if(disableDlrHandover)
             {
