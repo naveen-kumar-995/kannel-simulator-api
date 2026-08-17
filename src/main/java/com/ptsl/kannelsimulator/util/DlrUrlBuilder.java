@@ -45,13 +45,12 @@ public final class DlrUrlBuilder {
 
     public static boolean isDlrHandoverDisabled() {
 
-        String value = System.getenv("DISABLE-DLR-HANDOVER");
+        return Boolean.parseBoolean(
+                System.getenv()
+                        .getOrDefault(
+                                "DISABLE_DLR_HANDOVER",
+                                "true"));
 
-        logger.error(
-                "Environment variable DISABLE-DLR-HANDOVER=[{}]",
-                value);
-
-        return Boolean.parseBoolean(value);
     }
     /**
      * Build Failed DLR URL.
