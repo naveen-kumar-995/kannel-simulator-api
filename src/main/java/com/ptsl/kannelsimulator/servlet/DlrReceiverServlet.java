@@ -27,6 +27,15 @@ public class DlrReceiverServlet extends HttpServlet {
 
         try {
 
+            boolean disableDlrHandover =  Boolean.parseBoolean(System.getenv().getOrDefault("DISABLE-DLR-HANDOVER", "false"));
+
+            if(disableDlrHandover)
+            {
+                response.setStatus(HttpServletResponse.SC_ACCEPTED);
+                response.getWriter().write("ACCEPTED");
+                return;
+            }
+
             /*
              * Read Parameters
              */

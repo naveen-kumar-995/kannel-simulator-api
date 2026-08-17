@@ -8,6 +8,11 @@ services:
     build: .
     image: kannel-simulator:1.0.0
 
+
+    environment:
+      - id=1
+      - DISABLE-DLR-HANDOVER=false
+
     restart: unless-stopped
 
     ports:

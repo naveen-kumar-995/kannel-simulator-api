@@ -39,7 +39,9 @@ public class StartupListener implements ServletContextListener {
             pollerThread = new Thread(dlrPoller, "dlr-poller");
             pollerThread.setDaemon(false);
             pollerThread.start();
+            boolean disableDlrHandover =  Boolean.parseBoolean(System.getenv().getOrDefault("DISABLE-DLR-HANDOVER", "false"));
 
+            LOGGER.error("disableDlrHandover: {}" , disableDlrHandover);
             LOGGER.info("DLR Poller started successfully.");
 
         } catch (Exception e) {
