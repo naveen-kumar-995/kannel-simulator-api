@@ -30,20 +30,21 @@ public class StartupListener implements ServletContextListener {
              * Initialize reusable HTTP client.
              */
             HttpSender.initialize();
-
-            /*
-             * Start Poller
-             */
-            dlrPoller = new DlrPoller();
-
-            pollerThread = new Thread(dlrPoller, "dlr-poller");
-            pollerThread.setDaemon(false);
-            pollerThread.start();
             boolean disableDlrHandover =  Boolean.parseBoolean(System.getenv().getOrDefault("DISABLE-DLR-HANDOVER", "false"));
+            LOGGER.error("disableDlrHandover: {}", disableDlrHandover);
 
-            LOGGER.error("disableDlrHandover: {}" , disableDlrHandover);
-            LOGGER.info("DLR Poller started successfully.");
+            if(!disableDlrHandover) {
+                /*
+                 * Start Poller
+                 */
+                dlrPoller = new DlrPoller();
 
+                pollerThread = new Thread(dlrPoller, "dlr-poller");
+                pollerThread.setDaemon(false);
+                pollerThread.start();
+
+                LOGGER.info("DLR Poller started successfully.");
+            }
         } catch (Exception e) {
             LOGGER.warn("Unable to start Kannel Simulator.", e);
             throw new RuntimeException(e);
