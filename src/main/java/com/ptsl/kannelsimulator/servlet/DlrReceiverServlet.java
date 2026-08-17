@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.ptsl.kannelsimulator.model.DlrRequest;
 import com.ptsl.kannelsimulator.queue.DlrQueueHolder;
+import com.ptsl.kannelsimulator.util.DlrUrlBuilder;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -21,7 +22,7 @@ public class DlrReceiverServlet extends HttpServlet {
 
     private static final long   serialVersionUID = 1L;
     private static final  Logger LOGGER           = LoggerFactory.getLogger(DlrReceiverServlet.class);
-    boolean disableDlrHandover =  Boolean.parseBoolean(System.getenv().getOrDefault("DISABLE-DLR-HANDOVER", "false"));
+    boolean disableDlrHandover = DlrUrlBuilder.isDlrHandoverDisabled();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -83,6 +84,8 @@ public class DlrReceiverServlet extends HttpServlet {
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e.getMessage());
         }
     }
+
+
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

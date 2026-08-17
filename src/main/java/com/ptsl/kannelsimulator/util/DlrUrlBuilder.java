@@ -6,6 +6,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ptsl.kannelsimulator.model.DlrRequest;
@@ -14,6 +16,7 @@ public final class DlrUrlBuilder {
 
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
+    static Logger logger = LoggerFactory.getLogger(DlrUrlBuilder.class);
     private static final DateTimeFormatter DLR_DATE_FORMAT =
             DateTimeFormatter.ofPattern("yyMMddHHmmss");
 
@@ -39,6 +42,17 @@ public final class DlrUrlBuilder {
                 "0");
     }
 
+
+    public static boolean isDlrHandoverDisabled() {
+
+        String value = System.getenv("DISABLE-DLR-HANDOVER");
+
+        logger.error(
+                "Environment variable DISABLE-DLR-HANDOVER=[{}]",
+                value);
+
+        return Boolean.parseBoolean(value);
+    }
     /**
      * Build Failed DLR URL.
      */

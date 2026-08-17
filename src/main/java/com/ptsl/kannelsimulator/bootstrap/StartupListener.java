@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.ptsl.kannelsimulator.http.HttpSender;
 import com.ptsl.kannelsimulator.poller.DlrPoller;
+import com.ptsl.kannelsimulator.util.DlrUrlBuilder;
 
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
@@ -30,7 +31,7 @@ public class StartupListener implements ServletContextListener {
              * Initialize reusable HTTP client.
              */
             HttpSender.initialize();
-            boolean disableDlrHandover =  Boolean.parseBoolean(System.getenv().getOrDefault("DISABLE-DLR-HANDOVER", "false"));
+            boolean disableDlrHandover =   DlrUrlBuilder.isDlrHandoverDisabled();
             LOGGER.error("disableDlrHandover: {}", disableDlrHandover);
 
             if(!disableDlrHandover) {
