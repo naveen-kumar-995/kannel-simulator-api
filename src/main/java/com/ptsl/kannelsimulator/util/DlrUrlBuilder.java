@@ -49,7 +49,7 @@ public final class DlrUrlBuilder {
                 System.getenv()
                         .getOrDefault(
                                 "DISABLE_DLR_HANDOVER",
-                                "true"));
+                                "false"));
 
     }
     /**
