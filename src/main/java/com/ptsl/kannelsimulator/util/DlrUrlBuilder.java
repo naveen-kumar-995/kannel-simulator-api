@@ -52,7 +52,7 @@ public final class DlrUrlBuilder {
             {
                 return build(request, "UNDELIV" ,"001" , "1");
             }
-            else if(count % 100 ==0)
+            else if(count % 101 ==0)
             {
                 return build(request, "REJECTD" ,"002" , "1");
             }
