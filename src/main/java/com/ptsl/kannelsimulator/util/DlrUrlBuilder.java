@@ -1,10 +1,15 @@
 package com.ptsl.kannelsimulator.util;
 
+import java.math.BigInteger;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
 import java.util.UUID;
+import java.util.concurrent.atomic.AtomicLong;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +20,13 @@ import com.ptsl.kannelsimulator.model.DlrRequest;
 public final class DlrUrlBuilder {
 
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+
+    private static final List<String> specificHeaders = Arrays.asList(
+            "CANBNK", "HDFCBK", "ICICIB", "AXISBK", "SBIOTP",
+            "PAYTMB", "AMAZON", "FLIPKT", "MYBANK", "UPIOTP"
+    );
+
+    private static AtomicLong dnReceivedCounter = new AtomicLong();
 
     static Logger logger = LoggerFactory.getLogger(DlrUrlBuilder.class);
     private static final DateTimeFormatter DLR_DATE_FORMAT =
@@ -33,6 +45,17 @@ public final class DlrUrlBuilder {
         if("REJECT".equalsIgnoreCase(request.getSenderId()))
         {
             return build(request, "UNDELIV" ,"001" , "1");
+        } else if (specificHeaders.contains(request.getSenderId())) {
+
+           long  count =   dnReceivedCounter.incrementAndGet();
+            if(count % 100 == 0)
+            {
+                return build(request, "UNDELIV" ,"001" , "1");
+            }
+            else if(count % 50 ==0)
+            {
+                return build(request, "REJECTD" ,"002" , "1");
+            }
         }
 
         return build(
