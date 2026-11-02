@@ -26,6 +26,8 @@ public final class DlrUrlBuilder {
             "PAYTMB", "AMAZON", "FLIPKT", "MYBANK", "UPIOTP"
     );
 
+    private static final String NODLR = "NODLRK";
+
     private static AtomicLong dnReceivedCounter = new AtomicLong();
 
     static Logger logger = LoggerFactory.getLogger(DlrUrlBuilder.class);
@@ -42,6 +44,11 @@ public final class DlrUrlBuilder {
     public static String buildDeliveredUrl(DlrRequest request) {
 
 
+        if(NODLR.equalsIgnoreCase(request.getSenderId()))
+        {
+            return null;
+        }
+
         if("REJECT".equalsIgnoreCase(request.getSenderId()))
         {
             return build(request, "UNDELIV" ,"001" , "1");
@@ -52,9 +59,11 @@ public final class DlrUrlBuilder {
             {
                 return build(request, "UNDELIV" ,"001" , "1");
             }
-            else if(count % 101 ==0)
+            else if(count % 101 == 0)
             {
                 return build(request, "REJECTD" ,"002" , "1");
+            } else if (count % 151 == 0) {
+                return build(request, "EXPIRED" ,"003" , "1");
             }
         }
 
