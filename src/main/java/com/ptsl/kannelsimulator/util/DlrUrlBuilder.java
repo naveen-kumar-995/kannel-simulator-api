@@ -48,11 +48,11 @@ public final class DlrUrlBuilder {
         } else if (specificHeaders.contains(request.getSenderId())) {
 
            long  count =   dnReceivedCounter.incrementAndGet();
-            if(count % 100 == 0)
+            if(count % 50 == 0)
             {
                 return build(request, "UNDELIV" ,"001" , "1");
             }
-            else if(count % 50 ==0)
+            else if(count % 100 ==0)
             {
                 return build(request, "REJECTD" ,"002" , "1");
             }
